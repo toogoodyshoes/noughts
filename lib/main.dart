@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:noughts/features/authentication/presentation/login_page.dart';
+// import 'package:noughts/features/authentication/presentation/sign_up_page.dart';
+// import 'package:noughts/features/note/presentation/home_page.dart';
 
 import 'package:noughts/firebase_options.dart';
 
@@ -21,7 +24,7 @@ class Noughts extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Center(child: Text('Flutter Demo Home Page')),
+      home: const LoginPage(),
     );
   }
 }
