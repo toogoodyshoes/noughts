@@ -1,6 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+
+import 'package:noughts/features/authentication/presentation/authentication_provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -75,9 +79,20 @@ class _LoginPageState extends State<LoginPage> {
                 /// Login Button
                 TextButton(
                   onPressed: () {
-                    // TODO : Login
+                    context.read<AuthenticationProvider>().logIn();
+                    context.go('/');
                   },
                   child: const Text('Login'),
+                ),
+
+                const Spacer(),
+
+                /// Sign-Up Button
+                TextButton(
+                  onPressed: () {
+                    context.go('/sign-up');
+                  },
+                  child: const Text('Sign Up'),
                 ),
               ],
             ),

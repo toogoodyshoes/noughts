@@ -1,6 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+
+import 'package:noughts/features/authentication/presentation/authentication_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -30,7 +34,8 @@ class _HomePageState extends State<HomePage> {
                 /// Logout Button
                 TextButton(
                   onPressed: () {
-                    // TODO : Logout
+                    context.read<AuthenticationProvider>().logOut();
+                    context.go('/login');
                   },
                   child: const Text('Logout'),
                 ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:noughts/features/authentication/presentation/login_page.dart';
-// import 'package:noughts/features/authentication/presentation/sign_up_page.dart';
-// import 'package:noughts/features/note/presentation/home_page.dart';
 
+import 'package:noughts/router.dart';
 import 'package:noughts/firebase_options.dart';
+import 'package:noughts/features/authentication/presentation/authentication_provider.dart';
 
 Future<void> main() async {
   await Firebase.initializeApp(
@@ -19,12 +19,13 @@ class Noughts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ChangeNotifierProvider<AuthenticationProvider>(
+      create: (context) => AuthenticationProvider(),
+      child: MaterialApp.router(
+        title: 'Noughts',
+        theme: ThemeData.dark(),
+        routerConfig: router,
       ),
-      home: const LoginPage(),
     );
   }
 }
