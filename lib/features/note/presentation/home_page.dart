@@ -33,9 +33,10 @@ class _HomePageState extends State<HomePage> {
               children: [
                 /// Logout Button
                 TextButton(
-                  onPressed: () {
-                    context.read<AuthenticationProvider>().logOut();
-                    context.go('/login');
+                  onPressed: () async {
+                    await context.read<AuthenticationProvider>().logOut().then(
+                          (value) => context.go('/login'),
+                        );
                   },
                   child: const Text('Logout'),
                 ),

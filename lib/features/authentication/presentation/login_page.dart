@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -78,9 +79,22 @@ class _LoginPageState extends State<LoginPage> {
 
                 /// Login Button
                 TextButton(
-                  onPressed: () {
-                    context.read<AuthenticationProvider>().logIn();
-                    context.go('/');
+                  onPressed: () async {
+                    Map<String, dynamic> credentials = {};
+                    credentials['email'] = _email.text;
+                    credentials['password'] = _password.text;
+                    await context
+                        .read<AuthenticationProvider>()
+                        .logIn(credentials)
+                        .then(
+                      (User? value) {
+                        if (value != null) {
+                          context.go('/');
+                        }
+
+                        return;
+                      },
+                    );
                   },
                   child: const Text('Login'),
                 ),

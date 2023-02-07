@@ -1,10 +1,10 @@
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:go_router/go_router.dart';
 
-import 'package:noughts/features/authentication/presentation/authentication_provider.dart';
+import 'package:noughts/features/note/presentation/home_page.dart';
 import 'package:noughts/features/authentication/presentation/login_page.dart';
 import 'package:noughts/features/authentication/presentation/sign_up_page.dart';
-import 'package:noughts/features/note/presentation/home_page.dart';
+import 'package:noughts/features/authentication/presentation/authentication_provider.dart';
 
 final GoRouter router = GoRouter(
   routes: [
@@ -17,6 +17,8 @@ final GoRouter router = GoRouter(
         if (provider.state is UnAuthenticated) {
           return '/login';
         }
+
+        return null;
       },
     ),
     GoRoute(
@@ -28,6 +30,8 @@ final GoRouter router = GoRouter(
         if (provider.state is Authenticated) {
           return '/';
         }
+
+        return null;
       },
     ),
     GoRoute(
@@ -39,6 +43,8 @@ final GoRouter router = GoRouter(
         if (provider.state is Authenticated) {
           return '/';
         }
+
+        return null;
       },
     ),
   ],
